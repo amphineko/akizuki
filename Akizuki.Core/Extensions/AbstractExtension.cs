@@ -16,16 +16,18 @@ namespace moe.futa.akizuki.Core.Extensions
             _state = ExtensionState.Loaded;
         }
 
-        public virtual void SetDisabled()
+        public virtual async void SetDisabled()
         {
             Debug.Assert(_state is ExtensionState.Enabled);
             _state = ExtensionState.Loaded;
+            await Task.CompletedTask;
         }
 
-        public virtual void SetEnabled()
+        public virtual async void SetEnabled()
         {
             Debug.Assert(_state is ExtensionState.Loaded);
             _state = ExtensionState.Enabled;
+            await Task.CompletedTask;
         }
 
         public virtual void Dispose()

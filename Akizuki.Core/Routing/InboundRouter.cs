@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
@@ -55,9 +56,11 @@ namespace moe.futa.akizuki.Core.Routing
                     await hook.Accept(statuses);
 
                 foreach (var status in statuses)
-                    foreach (var handler in _handlers)
-                        if (await handler.Accept(status))
-                            break;
+                foreach (var handler in _handlers)
+                    if (handler.GetType().GetCustomAttribute<AsyncHandler>().IsAsync
+                        ? await handler.AcceptAsync(status)
+                        : handler.Accept(status))
+                        break;
             }
             finally
             {
