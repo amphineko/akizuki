@@ -9,9 +9,11 @@ namespace moe.futa.akizuki.Core.Messages
 {
     public abstract class AbstractStatus
     {
-        public string Context { get; set; } = null;
+        public Identifier Context { get; set; } = null;
 
-        public string Sender { get; set; } = null;
+        public Identifier From { get; set; } = null;
+
+        public Identifier To { get; set; } = null;
 
         public AbstractVendor Vendor { get; set; } = null;
     }
