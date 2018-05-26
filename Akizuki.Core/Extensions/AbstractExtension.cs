@@ -4,32 +4,42 @@ using System.Threading.Tasks;
 
 namespace moe.futa.akizuki.Core.Extensions
 {
-    public abstract class AbstractExtension : IDisposable
+    public abstract class AbstractExtension<TConfiguration> : IDisposable where TConfiguration : ExtensionConfiguration
     {
-        private ExtensionState _state;
+        private readonly TConfiguration _configuration;
 
-        protected AbstractExtension()
+        protected ExtensionState State;
+
+        protected AbstractExtension(TConfiguration configuration)
         {
-            _state = ExtensionState.Loaded;
+            _configuration = configuration;
+            State = ExtensionState.Loaded;
         }
 
         public virtual void Dispose()
         {
-            Debug.Assert(_state is ExtensionState.Loaded); // extensions should be disabled before unloading
+            Debug.Assert(State is ExtensionState.Loaded); // extensions should be disabled before unloading
         }
 
         public virtual async void SetDisabled()
         {
-            Debug.Assert(_state is ExtensionState.Enabled);
-            _state = ExtensionState.Loaded;
+            Debug.Assert(State is ExtensionState.Enabled);
+            State = ExtensionState.Loaded;
             await Task.CompletedTask;
         }
 
         public virtual async void SetEnabled()
         {
-            Debug.Assert(_state is ExtensionState.Loaded);
-            _state = ExtensionState.Enabled;
+            Debug.Assert(State is ExtensionState.Loaded);
+            State = ExtensionState.Enabled;
             await Task.CompletedTask;
+        }
+    }
+
+    public abstract class AbstractExtension : AbstractExtension<ExtensionConfiguration>
+    {
+        protected AbstractExtension(ExtensionConfiguration configuration) : base(configuration)
+        {
         }
     }
 }

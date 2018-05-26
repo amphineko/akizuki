@@ -7,7 +7,7 @@
     <ProjectGuid>{3925B204-5857-4CD3-833E-CC2D4A013F2C}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Akizuki.Handler.Null</RootNamespace>
+    <RootNamespace>moe.futa.akizuki.Handler.Null</RootNamespace>
     <AssemblyName>Akizuki.Handler.Null</AssemblyName>
     <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
@@ -16,7 +16,7 @@
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
-    <OutputPath>..\Build\Debug\</OutputPath>
+    <OutputPath>..\Build\Debug\Extensions\</OutputPath>
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
@@ -24,7 +24,7 @@
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
     <Optimize>true</Optimize>
-    <OutputPath>..\Build\Release\</OutputPath>
+    <OutputPath>..\Build\Release\Extensions\</OutputPath>
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
@@ -40,6 +40,10 @@
     <Compile Include="NullHandler.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Akizuki.Bootloader\Akizuki.Bootloader.csproj">
+      <Project>{FBACF99D-6C16-4637-9AA5-704E7B16D414}</Project>
+      <Name>Akizuki.Bootloader</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Akizuki.Core\Akizuki.Core.csproj">
       <Project>{49A7303D-451D-48A1-ADA8-606FA64D1E5B}</Project>
       <Name>Akizuki.Core</Name>

@@ -1,13 +1,18 @@
 ﻿using System.Threading.Tasks;
+using moe.futa.akizuki.Core.Extensions;
 using moe.futa.akizuki.Core.Extensions.Handlers;
 using moe.futa.akizuki.Core.Messages;
 using NLog;
 
-namespace Akizuki.Handler.Null
+namespace moe.futa.akizuki.Handler.Null
 {
-    public class NullHandler : AbstractHandler
+    public sealed class NullHandler : AbstractHandler
     {
         private readonly Logger _logger = LogManager.GetCurrentClassLogger();
+
+        public NullHandler(ExtensionConfiguration configuration) : base(configuration)
+        {
+        }
 
         public override async Task<bool> AcceptAsync(AbstractStatus status)
         {

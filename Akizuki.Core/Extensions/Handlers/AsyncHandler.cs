@@ -3,7 +3,7 @@
 namespace moe.futa.akizuki.Core.Extensions.Handlers
 {
     [AttributeUsage(AttributeTargets.Class)]
-    public class AsyncHandler : Attribute
+    public sealed class AsyncHandler : Attribute
     {
         public AsyncHandler(bool isAsync)
         {

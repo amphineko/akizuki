@@ -1,25 +1,18 @@
-﻿using System.IO;
-using System.Xml.Serialization;
+﻿using System.Xml.Serialization;
+using moe.futa.akizuki.Core.Extensions;
 
 namespace moe.futa.akizuki.Core
 {
     [XmlRoot]
-    public class Configuration
+    public sealed class Configuration
     {
-        [XmlElement] public ExtensionConfiguration Extensions;
-
-        public static Configuration LoadFile(string path)
-        {
-            var serializer = new XmlSerializer(typeof(Configuration));
-            using (var stream = new FileStream(path, FileMode.Open))
-            {
-                return (Configuration) serializer.Deserialize(stream);
-            }
-        }
+        [XmlElement] public ExtensionList Extensions;
+        [XmlElement] public ExtensionRepositoryConfiguration ExtensionRepositoryConfiguration;
     }
 
-    public class ExtensionConfiguration
+    public sealed class ExtensionList
     {
-        [XmlElement] public string SearchPath; // defaults to current path
+        [XmlElement("Extension", typeof(ExtensionConfiguration))]
+        public ExtensionConfiguration[] Extensions;
     }
 }

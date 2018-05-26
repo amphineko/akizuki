@@ -1,10 +1,11 @@
 ﻿using System.Threading.Tasks;
+using moe.futa.akizuki.Core.Extensions;
 using moe.futa.akizuki.Core.Extensions.Vendors;
 using moe.futa.akizuki.Core.Messages;
 using moe.futa.akizuki.Core.Routing;
 using NLog;
 
-namespace Akizuki.Vendor.Null
+namespace moe.futa.akizuki.Vendor.Null
 {
     /// <summary>
     ///     A virtual vendor blackholes any statuses which are sent to null identifier
@@ -14,7 +15,8 @@ namespace Akizuki.Vendor.Null
     {
         private readonly Logger _logger = LogManager.GetCurrentClassLogger();
 
-        public NullVendor(OutboundRouter outRouter) : base(outRouter)
+        public NullVendor(ExtensionConfiguration configuration, OutboundRouter outRouter) : base(configuration,
+            outRouter)
         {
             outRouter.Register(new Identifier("chat", "null", "null"), this);
             outRouter.Register(new Identifier("user", "null", "null"), this);
