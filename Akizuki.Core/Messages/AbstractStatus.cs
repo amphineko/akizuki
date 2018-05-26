@@ -10,6 +10,11 @@ namespace moe.futa.akizuki.Core.Messages
 
         public Identifier To { get; set; } = null;
 
+        /// <remarks>
+        ///     Vendor instances shouldn't be accessed directly by design.
+        ///     In order to create replies and send outgoing statuses,
+        ///     use Vendor.GetType() and OutboundRouter.
+        /// </remarks>
         public AbstractVendor Vendor { get; set; } = null;
     }
 }

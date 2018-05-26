@@ -17,7 +17,7 @@ namespace moe.futa.akizuki.Core.Extensions.Vendors
         }
 
         /// <summary>
-        ///     Send a outgoing status
+        ///     Sends an outgoing status
         /// </summary>
         public abstract Task Accept(AbstractStatus status);
 
@@ -27,7 +27,7 @@ namespace moe.futa.akizuki.Core.Extensions.Vendors
         }
 
         /// <summary>
-        ///     Transfer an incoming status to Router, registered in bootstrap process
+        ///     Transfers an incoming status to Router, registered in bootstrap process
         /// </summary>
         public event InboundStatusHandler InboundStatusEvent;
     }

@@ -17,7 +17,12 @@ namespace moe.futa.akizuki.Core.Extensions.Handlers
             throw new NotImplementedException();
         }
 
-        /// <returns>True if accepted and handled</returns>
+        /// <summary>
+        ///     Accepts an incoming status
+        /// </summary>
+        /// <returns>
+        ///     True for accepted statuses, false for passing to next handlers
+        /// </returns>
         public virtual async Task<bool> AcceptAsync(AbstractStatus status)
         {
             return await Task.FromResult(false);

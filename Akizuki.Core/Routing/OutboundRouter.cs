@@ -16,6 +16,11 @@ namespace moe.futa.akizuki.Core.Routing
         private readonly Dictionary<string, IList<AbstractVendor>> _vendors =
             new Dictionary<string, IList<AbstractVendor>>();
 
+        /// <summary>
+        ///     Accepts an outgoing status with Source-based Routing
+        ///     Vendors are choosen by Status.From
+        /// </summary>
+        /// <param name="status"></param>
         public void Accept(AbstractStatus status)
         {
             var id = status.From.ToString();
@@ -25,6 +30,10 @@ namespace moe.futa.akizuki.Core.Routing
             vendors[_random.Next(vendors.Count)].Accept(status);
         }
 
+        /// <summary>
+        ///     Registers a Identifier for Source-based Routing
+        ///     Statuses sent from this Identifier will be accepted by this vendor
+        /// </summary>
         public void Register(Identifier identifier, AbstractVendor vendor)
         {
             GetVendors(identifier.ToString()).Add(vendor);

@@ -18,6 +18,7 @@ namespace moe.futa.akizuki.Vendor.Null
         public NullVendor(ExtensionConfiguration configuration, OutboundRouter outRouter) : base(configuration,
             outRouter)
         {
+            // TODO: set null endpoints by configuration
             outRouter.Register(new Identifier("chat", "null", "null"), this);
             outRouter.Register(new Identifier("user", "null", "null"), this);
         }

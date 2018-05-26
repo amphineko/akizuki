@@ -2,6 +2,9 @@
 
 namespace moe.futa.akizuki.Core.Extensions.Handlers
 {
+    /// <summary>
+    ///     Indicates if a handler either sync or async handler
+    /// </summary>
     [AttributeUsage(AttributeTargets.Class)]
     public sealed class AsyncHandler : Attribute
     {
