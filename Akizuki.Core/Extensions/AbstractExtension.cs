@@ -1,8 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Diagnostics;
-using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace moe.futa.akizuki.Core.Extensions
@@ -14,6 +11,11 @@ namespace moe.futa.akizuki.Core.Extensions
         protected AbstractExtension()
         {
             _state = ExtensionState.Loaded;
+        }
+
+        public virtual void Dispose()
+        {
+            Debug.Assert(_state is ExtensionState.Loaded); // extensions should be disabled before unloading
         }
 
         public virtual async void SetDisabled()
@@ -28,11 +30,6 @@ namespace moe.futa.akizuki.Core.Extensions
             Debug.Assert(_state is ExtensionState.Loaded);
             _state = ExtensionState.Enabled;
             await Task.CompletedTask;
-        }
-
-        public virtual void Dispose()
-        {
-            Debug.Assert(_state is ExtensionState.Loaded);      // extensions should be disabled before unloading
         }
     }
 }

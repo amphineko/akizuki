@@ -1,9 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Diagnostics;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using moe.futa.akizuki.Core.Extensions.Vendors;
 using moe.futa.akizuki.Core.Messages;
 
@@ -11,12 +8,13 @@ namespace moe.futa.akizuki.Core.Routing
 {
     public class OutboundRouter
     {
-        private Random _random = new Random();
+        private readonly Random _random = new Random();
 
         /// <summary>
-        /// Stores each Vendor for specific Identifier
+        ///     Stores each Vendor for specific Identifier
         /// </summary>
-        private Dictionary<string, IList<AbstractVendor>> _vendors = new Dictionary<string, IList<AbstractVendor>>();
+        private readonly Dictionary<string, IList<AbstractVendor>> _vendors =
+            new Dictionary<string, IList<AbstractVendor>>();
 
         public void Accept(AbstractStatus status)
         {

@@ -10,13 +10,12 @@ namespace moe.futa.akizuki.Core.Extensions
 {
     public class ExtensionRepository
     {
+        private readonly Logger _logger = LogManager.GetCurrentClassLogger();
         // NOTE: move RNG in MakeAppDomainName to members when converted to IDisposable
 
         // TODO: move extensions to AppDomain
 
-        private Dictionary<string, Type> _classes = new Dictionary<string, Type>();
-
-        private readonly Logger _logger = NLog.LogManager.GetCurrentClassLogger();
+        private readonly Dictionary<string, Type> _classes = new Dictionary<string, Type>();
 
         public void LoadDirectory(string path)
         {
@@ -38,7 +37,7 @@ namespace moe.futa.akizuki.Core.Extensions
             _logger.Info($"Try loading assembly file {path}");
 
             // single assembly may have multiple extensions
-            var types = assembly.GetTypes().Where((type) => typeof(AbstractExtension).IsAssignableFrom(type));
+            var types = assembly.GetTypes().Where(type => typeof(AbstractExtension).IsAssignableFrom(type));
             foreach (var clazz in types)
                 LoadExtension(clazz);
         }

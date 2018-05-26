@@ -1,19 +1,17 @@
-﻿using System;
-using System.Diagnostics;
-using System.IO;
+﻿using System.IO;
 using System.Reflection;
 using System.Threading;
 using moe.futa.akizuki.Core;
 using moe.futa.akizuki.Core.Extensions;
-using moe.futa.akizuki.Core.Logging;
+using NLog;
 
 namespace Akizuki.Bootloader
 {
-    class Bootloader
+    internal class Bootloader
     {
-        static void Main(string[] args)
+        private static void Main(string[] args)
         {
-            var logger = NLog.LogManager.GetCurrentClassLogger();
+            var logger = LogManager.GetCurrentClassLogger();
             logger.Info("Akizuki bootstrap started");
 
             var configPath = Path.ChangeExtension(Assembly.GetEntryAssembly().Location, "xml");

@@ -1,10 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
+﻿using System.Collections.Generic;
 using System.Reflection;
-using System.Text;
 using System.Threading;
-using System.Threading.Tasks;
 using moe.futa.akizuki.Core.Extensions.Handlers;
 using moe.futa.akizuki.Core.Extensions.Hooks;
 using moe.futa.akizuki.Core.Messages;
@@ -13,10 +9,10 @@ namespace moe.futa.akizuki.Core.Routing
 {
     internal class InboundRouter
     {
-        private readonly List<AbstractPreroutingHook> _preroutingHooks = new List<AbstractPreroutingHook>();
         private readonly List<AbstractHandler> _handlers = new List<AbstractHandler>();
 
         private readonly ReaderWriterLockSlim _lock = new ReaderWriterLockSlim();
+        private readonly List<AbstractPreroutingHook> _preroutingHooks = new List<AbstractPreroutingHook>();
 
         public void AddPreroutingHook(AbstractPreroutingHook hook)
         {
@@ -46,7 +42,7 @@ namespace moe.futa.akizuki.Core.Routing
 
         public async void Execute(AbstractStatus rawStatus)
         {
-            var statuses = new List<AbstractStatus>() {rawStatus};
+            var statuses = new List<AbstractStatus> {rawStatus};
 
             try
             {
