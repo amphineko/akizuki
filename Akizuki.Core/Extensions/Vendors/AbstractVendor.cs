@@ -1,5 +1,7 @@
-﻿using System.Threading.Tasks;
+﻿using System.Diagnostics;
+using System.Threading.Tasks;
 using moe.futa.akizuki.Core.Messages;
+using moe.futa.akizuki.Core.Routing;
 
 namespace moe.futa.akizuki.Core.Extensions.Vendors
 {
@@ -7,6 +9,13 @@ namespace moe.futa.akizuki.Core.Extensions.Vendors
 
     public abstract class AbstractVendor : AbstractExtension
     {
+        private OutboundRouter _outRouter;
+
+        protected AbstractVendor(OutboundRouter outRouter)
+        {
+            _outRouter = outRouter;
+        }
+
         /// <summary>
         ///     Send a outgoing status
         /// </summary>
