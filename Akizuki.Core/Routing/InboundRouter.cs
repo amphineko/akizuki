@@ -7,7 +7,7 @@ using moe.futa.akizuki.Core.Messages;
 
 namespace moe.futa.akizuki.Core.Routing
 {
-    internal class InboundRouter
+    public sealed class InboundRouter
     {
         private readonly List<AbstractHandler> _handlers = new List<AbstractHandler>();
 

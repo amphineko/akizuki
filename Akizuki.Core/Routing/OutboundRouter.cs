@@ -6,7 +6,7 @@ using moe.futa.akizuki.Core.Messages;
 
 namespace moe.futa.akizuki.Core.Routing
 {
-    public class OutboundRouter
+    public sealed class OutboundRouter
     {
         private readonly Random _random = new Random();
 
@@ -39,7 +39,7 @@ namespace moe.futa.akizuki.Core.Routing
 
         private IList<AbstractVendor> GetVendors(string identifier)
         {
-            if (_vendors.ContainsKey(identifier))
+            if (!_vendors.ContainsKey(identifier))
                 _vendors.Add(identifier, new List<AbstractVendor>());
             return _vendors[identifier];
         }
