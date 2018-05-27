@@ -11,12 +11,13 @@ namespace moe.futa.akizuki.Vendor.Null
     ///     A virtual vendor blackholes any statuses which are sent to null identifier
     ///     Statically registers at chat:null/null and user:null/null
     /// </summary>
+
     public sealed class NullVendor : AbstractVendor
     {
         private readonly Logger _logger = LogManager.GetCurrentClassLogger();
 
-        public NullVendor(ExtensionConfiguration configuration, OutboundRouter outRouter) : base(configuration,
-            outRouter)
+        public NullVendor(ExtensionConfiguration configuration, OutboundRouter outRouter, InboundRouter inRouter) : base(configuration,
+            outRouter, inRouter)
         {
             // TODO: set null endpoints by configuration
             outRouter.Register(new Identifier("chat", "null", "null"), this);

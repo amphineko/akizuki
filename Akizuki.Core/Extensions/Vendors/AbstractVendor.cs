@@ -9,33 +9,25 @@ namespace moe.futa.akizuki.Core.Extensions.Vendors
     public abstract class AbstractVendor<TConfiguration> : AbstractExtension<TConfiguration>
         where TConfiguration : ExtensionConfiguration
     {
-        private OutboundRouter _outRouter;
+        protected OutboundRouter _outRouter;
+        protected InboundRouter _inRouter;
 
-        protected AbstractVendor(TConfiguration configuration, OutboundRouter outRouter) : base(configuration)
+        protected AbstractVendor(TConfiguration configuration, OutboundRouter outRouter, InboundRouter inRouter) : base(configuration)
         {
             _outRouter = outRouter;
+            _inRouter = inRouter;
         }
 
         /// <summary>
         ///     Sends an outgoing status
         /// </summary>
         public abstract Task Accept(AbstractStatus status);
-
-        protected virtual void ExecuteInboundStatus(AbstractStatus status)
-        {
-            InboundStatusEvent?.Invoke(status);
-        }
-
-        /// <summary>
-        ///     Transfers an incoming status to Router, registered in bootstrap process
-        /// </summary>
-        public event InboundStatusHandler InboundStatusEvent;
     }
 
     public abstract class AbstractVendor : AbstractVendor<ExtensionConfiguration>
     {
-        protected AbstractVendor(ExtensionConfiguration configuration, OutboundRouter outRouter) : base(configuration,
-            outRouter)
+        protected AbstractVendor(ExtensionConfiguration configuration, OutboundRouter outRouter, InboundRouter inRouter) : base(configuration,
+            outRouter, inRouter)
         {
         }
     }

@@ -24,7 +24,7 @@ namespace moe.futa.akizuki.Core
                 if (typeof(AbstractPreroutingHook).IsAssignableFrom(type))
                     InstallHook(type, configuration, inRouter);
                 if (typeof(AbstractVendor).IsAssignableFrom(type))
-                    InstallVendor(type, configuration, outRouter);
+                    InstallVendor(type, configuration, outRouter, inRouter);
 
                 Logger.Info($"Extension {configuration.Alias ?? "undefined"}:{configuration.FullName} installed");
             }
@@ -42,9 +42,9 @@ namespace moe.futa.akizuki.Core
             inRouter.AddStatusHandler(handler);
         }
 
-        private static void InstallVendor(Type type, ExtensionConfiguration configuration, OutboundRouter outRouter)
+        private static void InstallVendor(Type type, ExtensionConfiguration configuration, OutboundRouter outRouter, InboundRouter inRouter)
         {
-            Activator.CreateInstance(type, configuration, outRouter);
+            Activator.CreateInstance(type, configuration, outRouter, inRouter);
         }
     }
 }
