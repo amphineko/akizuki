@@ -1,4 +1,6 @@
-﻿using System.IO;
+﻿using System;
+using System.Collections.Generic;
+using System.IO;
 using System.Reflection;
 using System.Threading;
 using System.Xml.Serialization;
@@ -16,13 +18,14 @@ namespace moe.futa.akizuki.Bootloader
             var logger = LogManager.GetCurrentClassLogger();
             logger.Info("Akizuki bootstrap started");
 
+            var extRepo = new ExtensionRepository();
+            logger.Info($"Loading extensions");
+            extRepo.LoadDirectory(Path.Combine(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location) ??
+                                               throw new InvalidOperationException(), "Extensions"));
+
             var configPath = Path.ChangeExtension(Assembly.GetEntryAssembly().Location, "xml");
             logger.Info($"Loading XML {configPath}");
-            var config = LoadConfigurationFile(configPath);
-
-            var extRepo = new ExtensionRepository();
-            logger.Info($"Loading extensions from {config.ExtensionRepositoryConfiguration.SearchPath}");
-            extRepo.LoadDirectory(config.ExtensionRepositoryConfiguration.SearchPath);
+            var config = LoadConfigurationFile(configPath, extRepo.GetConfigTypes());
 
             var inRouter = new InboundRouter();
             var outRouter = new OutboundRouter();
@@ -35,9 +38,9 @@ namespace moe.futa.akizuki.Bootloader
             Thread.Sleep(Timeout.Infinite);
         }
 
-        public static Configuration LoadConfigurationFile(string path)
+        public static Configuration LoadConfigurationFile(string path, List<Type> extraTypes)
         {
-            var serializer = new XmlSerializer(typeof(Configuration));
+            var serializer = new XmlSerializer(typeof(Configuration), extraTypes.ToArray());
             using (var stream = new FileStream(path, FileMode.Open))
             {
                 return (Configuration) serializer.Deserialize(stream);

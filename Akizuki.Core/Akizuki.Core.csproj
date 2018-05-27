@@ -47,7 +47,6 @@
     <Compile Include="Extensions\ExtensionConfiguration.cs" />
     <Compile Include="Extensions\ExtensionRepository.cs" />
     <Compile Include="Extensions\AbstractExtension.cs" />
-    <Compile Include="Extensions\ExtensionRepositoryConfiguration.cs" />
     <Compile Include="Extensions\ExtensionState.cs" />
     <Compile Include="Extensions\Handlers\AbstractHandler.cs" />
     <Compile Include="Extensions\Handlers\AsyncHandler.cs" />

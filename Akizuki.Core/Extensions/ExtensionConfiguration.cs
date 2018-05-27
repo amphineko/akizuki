@@ -1,8 +1,24 @@
-﻿using System.ComponentModel;
+﻿using System;
+using System.ComponentModel;
+using System.Diagnostics;
 using System.Xml.Serialization;
 
 namespace moe.futa.akizuki.Core.Extensions
 {
+    /// <summary>
+    ///     Extracts class FullName for XML deserialization automatically
+    /// </summary>
+    [AttributeUsage(AttributeTargets.Class)]
+    public class XmlTypeExAttribute : XmlTypeAttribute
+    {
+        public XmlTypeExAttribute(Type attachedType, bool enableTargetVerification = true) : base(attachedType.FullName)
+        {
+            // XmlTypeEx is designed for fixing XML configurations only
+            Debug.Assert(typeof(ExtensionConfiguration).IsAssignableFrom(attachedType));
+        }
+    }
+
+    [XmlTypeEx(typeof(ExtensionConfiguration))]
     public class ExtensionConfiguration
     {
         [DefaultValue(null)] [XmlElement(IsNullable = true)]

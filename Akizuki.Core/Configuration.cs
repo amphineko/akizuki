@@ -7,7 +7,6 @@ namespace moe.futa.akizuki.Core
     public sealed class Configuration
     {
         [XmlElement] public ExtensionList Extensions;
-        [XmlElement] public ExtensionRepositoryConfiguration ExtensionRepositoryConfiguration;
     }
 
     public sealed class ExtensionList
