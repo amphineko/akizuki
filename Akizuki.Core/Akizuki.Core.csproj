@@ -30,12 +30,15 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="NLog, Version=4.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c, processorArchitecture=MSIL">
-      <HintPath>..\packages\NLog.4.5.4\lib\net45\NLog.dll</HintPath>
-    </Reference>
+    <Reference Include="Microsoft.CSharp" />
     <Reference Include="System" />
+    <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Data" />
     <Reference Include="System.IO.Compression" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.ServiceModel" />
+    <Reference Include="System.Transactions" />
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
@@ -50,9 +53,10 @@
     <Compile Include="Extensions\Handlers\AsyncHandler.cs" />
     <Compile Include="Extensions\Hooks\AbstractPreroutingHook.cs" />
     <Compile Include="Extensions\Vendors\AbstractVendor.cs" />
-    <Compile Include="Messages\AbstractMessage.cs" />
     <Compile Include="Messages\AbstractStatus.cs" />
     <Compile Include="Messages\Identifier.cs" />
+    <Compile Include="Messages\StatusClassTypeAttribute.cs" />
+    <Compile Include="Messages\StatusType.cs" />
     <Compile Include="Routing\InboundRouter.cs" />
     <Compile Include="Routing\OutboundRouter.cs" />
   </ItemGroup>
@@ -69,7 +73,17 @@
     <None Include="NLog.xsd">
       <SubType>Designer</SubType>
     </None>
-    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="NLog">
+      <Version>4.5.5</Version>
+    </PackageReference>
+    <PackageReference Include="NLog.Config">
+      <Version>4.5.5</Version>
+    </PackageReference>
+    <PackageReference Include="NLog.Schema">
+      <Version>4.5.5</Version>
+    </PackageReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
