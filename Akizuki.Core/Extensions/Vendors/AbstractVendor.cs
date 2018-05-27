@@ -9,10 +9,11 @@ namespace moe.futa.akizuki.Core.Extensions.Vendors
     public abstract class AbstractVendor<TConfiguration> : AbstractExtension<TConfiguration>
         where TConfiguration : ExtensionConfiguration
     {
-        protected OutboundRouter _outRouter;
         protected InboundRouter _inRouter;
+        protected OutboundRouter _outRouter;
 
-        protected AbstractVendor(TConfiguration configuration, OutboundRouter outRouter, InboundRouter inRouter) : base(configuration)
+        protected AbstractVendor(TConfiguration configuration, OutboundRouter outRouter, InboundRouter inRouter) : base(
+            configuration)
         {
             _outRouter = outRouter;
             _inRouter = inRouter;
@@ -26,8 +27,8 @@ namespace moe.futa.akizuki.Core.Extensions.Vendors
 
     public abstract class AbstractVendor : AbstractVendor<ExtensionConfiguration>
     {
-        protected AbstractVendor(ExtensionConfiguration configuration, OutboundRouter outRouter, InboundRouter inRouter) : base(configuration,
-            outRouter, inRouter)
+        protected AbstractVendor(ExtensionConfiguration configuration, OutboundRouter outRouter, InboundRouter inRouter)
+            : base(configuration, outRouter, inRouter)
         {
         }
     }

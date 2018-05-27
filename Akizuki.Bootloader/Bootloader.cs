@@ -29,9 +29,10 @@ namespace moe.futa.akizuki.Bootloader
 
             config.Extensions.Install(extRepo, inRouter, outRouter);
 
-            // TODO: remove infinate sleep
-            while (true)
-                Thread.Sleep(0);
+            // TODO: enable extensions
+
+            logger.Info("Akizuki bootstrap completed");
+            Thread.Sleep(Timeout.Infinite);
         }
 
         public static Configuration LoadConfigurationFile(string path)

@@ -42,7 +42,8 @@ namespace moe.futa.akizuki.Core
             inRouter.AddStatusHandler(handler);
         }
 
-        private static void InstallVendor(Type type, ExtensionConfiguration configuration, OutboundRouter outRouter, InboundRouter inRouter)
+        private static void InstallVendor(Type type, ExtensionConfiguration configuration, OutboundRouter outRouter,
+            InboundRouter inRouter)
         {
             Activator.CreateInstance(type, configuration, outRouter, inRouter);
         }
