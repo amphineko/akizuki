@@ -26,9 +26,9 @@ namespace moe.futa.akizuki.Core.Messages
         public Identifier(string identifier)
         {
             var split = Regex.Split(identifier, @"^(.*)\:(.*)\/(.*)$");
-            Type = split[0];
-            Community = split[1];
-            Id = split[2];
+            Type = split[1];
+            Community = split[2];
+            Id = split[3];
         }
 
         public Identifier(string type, string community, string communityId)
