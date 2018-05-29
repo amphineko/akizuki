@@ -4,6 +4,7 @@
     {
         Abstract,
         Action,
-        Message
+        Message,
+        Status
     }
 }

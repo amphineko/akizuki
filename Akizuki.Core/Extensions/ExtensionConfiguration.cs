@@ -11,7 +11,7 @@ namespace moe.futa.akizuki.Core.Extensions
     [AttributeUsage(AttributeTargets.Class)]
     public class XmlTypeExAttribute : XmlTypeAttribute
     {
-        public XmlTypeExAttribute(Type attachedType, bool enableTargetVerification = true) : base(attachedType.FullName)
+        public XmlTypeExAttribute(Type attachedType) : base(attachedType.FullName)
         {
             // XmlTypeEx is designed for fixing XML configurations only
             Debug.Assert(typeof(ExtensionConfiguration).IsAssignableFrom(attachedType));

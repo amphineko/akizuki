@@ -1,18 +1,20 @@
 ﻿using System;
 using System.Diagnostics;
+using System.Reflection;
 using System.Threading.Tasks;
 
 namespace moe.futa.akizuki.Core.Extensions
 {
-    public abstract class AbstractExtension<TConfiguration> : IDisposable where TConfiguration : ExtensionConfiguration
+    [ExtensionConfigurationType(typeof(ExtensionConfiguration))]
+    public abstract class AbstractExtension : IDisposable
     {
-        private readonly TConfiguration _configuration;
-
         protected ExtensionState State;
 
-        protected AbstractExtension(TConfiguration configuration)
+        protected AbstractExtension(ExtensionConfiguration configuration)
         {
-            _configuration = configuration;
+            if (!GetType().GetCustomAttribute<ExtensionConfigurationTypeAttribute>().Type
+                .IsInstanceOfType(configuration))
+                throw new InvalidOperationException();
             State = ExtensionState.Loaded;
         }
 
@@ -36,10 +38,16 @@ namespace moe.futa.akizuki.Core.Extensions
         }
     }
 
-    public abstract class AbstractExtension : AbstractExtension<ExtensionConfiguration>
+    [AttributeUsage(AttributeTargets.Class)]
+    public class ExtensionConfigurationTypeAttribute : Attribute
     {
-        protected AbstractExtension(ExtensionConfiguration configuration) : base(configuration)
+        public readonly Type Type;
+
+        public ExtensionConfigurationTypeAttribute(Type type)
         {
+            if (!typeof(ExtensionConfiguration).IsAssignableFrom(type))
+                throw new InvalidOperationException();
+            Type = type;
         }
     }
 }

@@ -4,8 +4,6 @@ using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Reflection;
-using System.Security.Cryptography;
-using System.Text;
 using NLog;
 
 namespace moe.futa.akizuki.Core.Extensions
@@ -46,7 +44,7 @@ namespace moe.futa.akizuki.Core.Extensions
 
             // single assembly may have multiple extensions
             var types = assembly.GetTypes()
-                .Where(type => typeof(AbstractExtension<ExtensionConfiguration>).IsAssignableFrom(type));
+                .Where(type => type.IsSubclassOf(typeof(AbstractExtension)));
             foreach (var clazz in types)
                 LoadExtension(clazz);
 
@@ -56,7 +54,7 @@ namespace moe.futa.akizuki.Core.Extensions
 
         private void LoadExtension(Type type)
         {
-            Debug.Assert(typeof(AbstractExtension<ExtensionConfiguration>).IsAssignableFrom(type));
+            Debug.Assert(type.IsSubclassOf(typeof(AbstractExtension)));
             // register with class name
             _classes.Add(type.FullName ?? throw new InvalidOperationException("Unexpected null extension name"), type);
             _logger.Info($"Registered {type.FullName}");
