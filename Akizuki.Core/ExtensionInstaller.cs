@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using moe.futa.akizuki.Core.Extensions;
 using moe.futa.akizuki.Core.Extensions.Handlers;
 using moe.futa.akizuki.Core.Extensions.Hooks;
@@ -12,40 +13,49 @@ namespace moe.futa.akizuki.Core
     {
         private static readonly Logger Logger = LogManager.GetCurrentClassLogger();
 
-        public static void Install(this ExtensionList list, ExtensionRepository repository, InboundRouter inRouter,
+        public static IList<AbstractExtension> Install(this ExtensionList list, ExtensionRepository repository,
+            InboundRouter inRouter,
             OutboundRouter outRouter)
         {
+            var instances = new List<AbstractExtension>();
+
             foreach (var configuration in list.Extensions)
             {
                 var type = repository.GetExtensionType(configuration.FullName);
 
                 if (typeof(AbstractHandler).IsAssignableFrom(type))
-                    InstallHandler(type, configuration, inRouter);
+                    instances.Add(InstallHandler(type, configuration, inRouter));
                 if (typeof(AbstractPreroutingHook).IsAssignableFrom(type))
-                    InstallHook(type, configuration, inRouter);
+                    instances.Add(InstallHook(type, configuration, inRouter));
                 if (typeof(AbstractVendor).IsAssignableFrom(type))
-                    InstallVendor(type, configuration, outRouter, inRouter);
+                    instances.Add(InstallVendor(type, configuration, outRouter, inRouter));
 
                 Logger.Info($"Extension {configuration.Alias ?? "undefined"}:{configuration.FullName} installed");
             }
+
+            return instances;
         }
 
-        private static void InstallHook(Type type, ExtensionConfiguration configuration, InboundRouter inRouter)
+        private static AbstractPreroutingHook InstallHook(Type type, ExtensionConfiguration configuration,
+            InboundRouter inRouter)
         {
             var hook = (AbstractPreroutingHook) Activator.CreateInstance(type, configuration);
             inRouter.AddPreroutingHook(hook);
+            return hook;
         }
 
-        private static void InstallHandler(Type type, ExtensionConfiguration configuration, InboundRouter inRouter)
+        private static AbstractHandler InstallHandler(Type type, ExtensionConfiguration configuration,
+            InboundRouter inRouter)
         {
             var handler = (AbstractHandler) Activator.CreateInstance(type, configuration);
             inRouter.AddStatusHandler(handler);
+            return handler;
         }
 
-        private static void InstallVendor(Type type, ExtensionConfiguration configuration, OutboundRouter outRouter,
-            InboundRouter inRouter)
+        private static AbstractVendor InstallVendor(Type type, ExtensionConfiguration configuration,
+            OutboundRouter outRouter, InboundRouter inRouter)
         {
-            Activator.CreateInstance(type, configuration, outRouter, inRouter);
+            return (AbstractVendor) Activator.CreateInstance(type, configuration, outRouter, inRouter);
         }
     }
 }

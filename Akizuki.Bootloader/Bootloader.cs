@@ -30,9 +30,8 @@ namespace moe.futa.akizuki.Bootloader
             var inRouter = new InboundRouter();
             var outRouter = new OutboundRouter();
 
-            config.Extensions.Install(extRepo, inRouter, outRouter);
-
-            // TODO: enable extensions
+            foreach (var instance in config.Extensions.Install(extRepo, inRouter, outRouter))
+                instance.SetEnabled();
 
             logger.Info("Akizuki bootstrap completed");
             Thread.Sleep(Timeout.Infinite);
