@@ -1,11 +1,11 @@
 ﻿using System.Threading.Tasks;
-using moe.futa.akizuki.Core.Extensions;
-using moe.futa.akizuki.Core.Extensions.Vendors;
-using moe.futa.akizuki.Core.Messages;
-using moe.futa.akizuki.Core.Routing;
+using Akizuki.Core.Extensions;
+using Akizuki.Core.Extensions.Vendors;
+using Akizuki.Core.Messages;
+using Akizuki.Core.Routing;
 using NLog;
 
-namespace moe.futa.akizuki.Vendor.Null
+namespace Akizuki.Vendor.Null
 {
     /// <summary>
     ///     A virtual vendor blackholes any statuses which are sent to null identifier

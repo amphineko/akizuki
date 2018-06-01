@@ -3,7 +3,7 @@ using System.Diagnostics;
 using System.Reflection;
 using System.Threading.Tasks;
 
-namespace moe.futa.akizuki.Core.Extensions
+namespace Akizuki.Core.Extensions
 {
     [ExtensionConfigurationType(typeof(ExtensionConfiguration))]
     public abstract class AbstractExtension : IDisposable

@@ -1,8 +1,8 @@
 ﻿using System;
 using System.Threading.Tasks;
-using moe.futa.akizuki.Core.Messages;
+using Akizuki.Core.Messages;
 
-namespace moe.futa.akizuki.Core.Extensions.Handlers
+namespace Akizuki.Core.Extensions.Handlers
 {
     [AsyncHandler(true)]
     public abstract class AbstractHandler : AbstractExtension

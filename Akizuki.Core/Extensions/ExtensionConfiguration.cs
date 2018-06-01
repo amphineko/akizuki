@@ -3,7 +3,7 @@ using System.ComponentModel;
 using System.Diagnostics;
 using System.Xml.Serialization;
 
-namespace moe.futa.akizuki.Core.Extensions
+namespace Akizuki.Core.Extensions
 {
     /// <summary>
     ///     Extracts class FullName for XML deserialization automatically

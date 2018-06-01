@@ -1,8 +1,8 @@
 ﻿using System;
 using System.Reflection;
-using moe.futa.akizuki.Core.Extensions.Vendors;
+using Akizuki.Core.Extensions.Vendors;
 
-namespace moe.futa.akizuki.Core.Messages
+namespace Akizuki.Core.Messages
 {
     [StatusClassType(StatusType.Abstract)]
     public abstract class AbstractStatus

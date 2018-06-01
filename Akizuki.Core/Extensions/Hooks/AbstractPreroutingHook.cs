@@ -1,8 +1,8 @@
 ﻿using System.Collections.Generic;
 using System.Threading.Tasks;
-using moe.futa.akizuki.Core.Messages;
+using Akizuki.Core.Messages;
 
-namespace moe.futa.akizuki.Core.Extensions.Hooks
+namespace Akizuki.Core.Extensions.Hooks
 {
     public abstract class AbstractPreroutingHook : AbstractExtension
     {

@@ -1,7 +1,7 @@
 ﻿using System.Xml.Serialization;
-using moe.futa.akizuki.Core.Extensions;
+using Akizuki.Core.Extensions;
 
-namespace moe.futa.akizuki.Vendor.Null
+namespace Akizuki.Vendor.Null
 {
     [XmlTypeEx(typeof(Configuration))]
     public class Configuration : ExtensionConfiguration

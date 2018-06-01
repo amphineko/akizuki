@@ -1,7 +1,7 @@
 ﻿using System.Xml.Serialization;
-using moe.futa.akizuki.Core.Extensions;
+using Akizuki.Core.Extensions;
 
-namespace moe.futa.akizuki.Core
+namespace Akizuki.Core
 {
     [XmlRoot]
     public sealed class Configuration

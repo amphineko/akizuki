@@ -1,10 +1,10 @@
 ﻿using System.Threading.Tasks;
-using moe.futa.akizuki.Core.Extensions;
-using moe.futa.akizuki.Core.Extensions.Handlers;
-using moe.futa.akizuki.Core.Messages;
+using Akizuki.Core.Extensions;
+using Akizuki.Core.Extensions.Handlers;
+using Akizuki.Core.Messages;
 using NLog;
 
-namespace moe.futa.akizuki.Handler.Null
+namespace Akizuki.Handler.Null
 {
     public sealed class NullHandler : AbstractHandler
     {

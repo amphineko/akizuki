@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace moe.futa.akizuki.Core.Extensions.Handlers
+namespace Akizuki.Core.Extensions.Handlers
 {
     /// <summary>
     ///     Indicates if a handler either sync or async handler

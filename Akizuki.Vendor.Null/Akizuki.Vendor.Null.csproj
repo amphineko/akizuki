@@ -7,7 +7,7 @@
     <ProjectGuid>{CB3BDE2E-166C-4589-B338-C948EB581F59}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>moe.futa.akizuki.Vendor.Null</RootNamespace>
+    <RootNamespace>Akizuki.Vendor.Null</RootNamespace>
     <AssemblyName>Akizuki.Vendor.Null</AssemblyName>
     <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>

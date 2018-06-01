@@ -1,11 +1,11 @@
 ﻿using System.Collections.Generic;
 using System.Reflection;
 using System.Threading;
-using moe.futa.akizuki.Core.Extensions.Handlers;
-using moe.futa.akizuki.Core.Extensions.Hooks;
-using moe.futa.akizuki.Core.Messages;
+using Akizuki.Core.Extensions.Handlers;
+using Akizuki.Core.Extensions.Hooks;
+using Akizuki.Core.Messages;
 
-namespace moe.futa.akizuki.Core.Routing
+namespace Akizuki.Core.Routing
 {
     public sealed class InboundRouter
     {

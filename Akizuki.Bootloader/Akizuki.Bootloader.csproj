@@ -6,7 +6,7 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProjectGuid>{FBACF99D-6C16-4637-9AA5-704E7B16D414}</ProjectGuid>
     <OutputType>Exe</OutputType>
-    <RootNamespace>moe.futa.akizuki.Bootloader</RootNamespace>
+    <RootNamespace>Akizuki.Bootloader</RootNamespace>
     <AssemblyName>Akizuki.Bootloader</AssemblyName>
     <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>

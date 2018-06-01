@@ -1,13 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
-using moe.futa.akizuki.Core.Extensions;
-using moe.futa.akizuki.Core.Extensions.Handlers;
-using moe.futa.akizuki.Core.Extensions.Hooks;
-using moe.futa.akizuki.Core.Extensions.Vendors;
-using moe.futa.akizuki.Core.Routing;
+using Akizuki.Core.Extensions;
+using Akizuki.Core.Extensions.Handlers;
+using Akizuki.Core.Extensions.Hooks;
+using Akizuki.Core.Extensions.Vendors;
+using Akizuki.Core.Routing;
 using NLog;
 
-namespace moe.futa.akizuki.Core
+namespace Akizuki.Core
 {
     public static class ExtensionInstaller
     {

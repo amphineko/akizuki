@@ -1,10 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Diagnostics;
-using moe.futa.akizuki.Core.Extensions.Vendors;
-using moe.futa.akizuki.Core.Messages;
+using Akizuki.Core.Extensions.Vendors;
+using Akizuki.Core.Messages;
 
-namespace moe.futa.akizuki.Core.Routing
+namespace Akizuki.Core.Routing
 {
     public sealed class OutboundRouter
     {

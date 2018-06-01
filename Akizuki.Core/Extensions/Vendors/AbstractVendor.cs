@@ -1,8 +1,8 @@
 ﻿using System.Threading.Tasks;
-using moe.futa.akizuki.Core.Messages;
-using moe.futa.akizuki.Core.Routing;
+using Akizuki.Core.Messages;
+using Akizuki.Core.Routing;
 
-namespace moe.futa.akizuki.Core.Extensions.Vendors
+namespace Akizuki.Core.Extensions.Vendors
 {
     public delegate void InboundStatusHandler(AbstractStatus status);
 

@@ -6,7 +6,7 @@ using System.Linq;
 using System.Reflection;
 using NLog;
 
-namespace moe.futa.akizuki.Core.Extensions
+namespace Akizuki.Core.Extensions
 {
     public sealed class ExtensionRepository
     {

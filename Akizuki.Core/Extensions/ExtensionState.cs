@@ -1,4 +1,4 @@
-﻿namespace moe.futa.akizuki.Core.Extensions
+﻿namespace Akizuki.Core.Extensions
 {
     public enum ExtensionState
     {

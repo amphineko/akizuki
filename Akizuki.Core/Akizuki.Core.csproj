@@ -7,7 +7,7 @@
     <ProjectGuid>{49A7303D-451D-48A1-ADA8-606FA64D1E5B}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>moe.futa.akizuki.Core</RootNamespace>
+    <RootNamespace>Akizuki.Core</RootNamespace>
     <AssemblyName>Akizuki.Core</AssemblyName>
     <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>

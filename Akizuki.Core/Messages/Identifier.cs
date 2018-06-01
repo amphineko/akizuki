@@ -1,6 +1,6 @@
 ﻿using System.Text.RegularExpressions;
 
-namespace moe.futa.akizuki.Core.Messages
+namespace Akizuki.Core.Messages
 {
     public sealed class Identifier
     {

@@ -4,12 +4,12 @@ using System.IO;
 using System.Reflection;
 using System.Threading;
 using System.Xml.Serialization;
-using moe.futa.akizuki.Core;
-using moe.futa.akizuki.Core.Extensions;
-using moe.futa.akizuki.Core.Routing;
+using Akizuki.Core;
+using Akizuki.Core.Extensions;
+using Akizuki.Core.Routing;
 using NLog;
 
-namespace moe.futa.akizuki.Bootloader
+namespace Akizuki.Bootloader
 {
     internal class Bootloader
     {
