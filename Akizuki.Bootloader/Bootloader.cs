@@ -18,19 +18,19 @@ namespace Akizuki.Bootloader
             var logger = LogManager.GetCurrentClassLogger();
             logger.Info("Akizuki bootstrap started");
 
-            var extRepo = new ExtensionRepository();
+            var classRepo = new ClassRepository();
             logger.Info($"Loading extensions");
-            extRepo.LoadDirectory(Path.Combine(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location) ??
-                                               throw new InvalidOperationException(), "Extensions"));
+            classRepo.LoadDirectory(Path.Combine(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location) ??
+                                                 throw new InvalidOperationException(), "Extensions"));
 
             var configPath = Path.ChangeExtension(Assembly.GetEntryAssembly().Location, "xml");
             logger.Info($"Loading XML {configPath}");
-            var config = LoadConfigurationFile(configPath, extRepo.GetConfigTypes());
+            var config = LoadConfigurationFile(configPath, classRepo.GetConfigurationTypes());
 
             var inRouter = new InboundRouter();
             var outRouter = new OutboundRouter();
 
-            foreach (var instance in config.Extensions.Install(extRepo, inRouter, outRouter))
+            foreach (var instance in config.Extensions.Install(classRepo, inRouter, outRouter))
                 instance.SetEnabled();
 
             logger.Info("Akizuki bootstrap completed");

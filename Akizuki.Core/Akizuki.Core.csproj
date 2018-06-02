@@ -44,8 +44,9 @@
   <ItemGroup>
     <Compile Include="Configuration.cs" />
     <Compile Include="ExtensionInstaller.cs" />
+    <Compile Include="Extensions\AssemblyExtensions.cs" />
     <Compile Include="Extensions\ExtensionConfiguration.cs" />
-    <Compile Include="Extensions\ExtensionRepository.cs" />
+    <Compile Include="Extensions\ClassRepository.cs" />
     <Compile Include="Extensions\AbstractExtension.cs" />
     <Compile Include="Extensions\ExtensionState.cs" />
     <Compile Include="Extensions\Handlers\AbstractHandler.cs" />

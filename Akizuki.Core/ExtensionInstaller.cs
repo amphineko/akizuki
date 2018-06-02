@@ -13,7 +13,7 @@ namespace Akizuki.Core
     {
         private static readonly Logger Logger = LogManager.GetCurrentClassLogger();
 
-        public static IList<AbstractExtension> Install(this ExtensionList list, ExtensionRepository repository,
+        public static IList<AbstractExtension> Install(this ExtensionList list, ClassRepository repository,
             InboundRouter inRouter,
             OutboundRouter outRouter)
         {

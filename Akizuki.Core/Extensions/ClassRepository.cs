@@ -8,7 +8,7 @@ using NLog;
 
 namespace Akizuki.Core.Extensions
 {
-    public sealed class ExtensionRepository
+    public sealed class ClassRepository
     {
         // NOTE: move RNG in MakeAppDomainName to members when converted to IDisposable
 
@@ -18,11 +18,19 @@ namespace Akizuki.Core.Extensions
         private readonly List<Type> _configTypes = new List<Type>();
         private readonly Logger _logger = LogManager.GetCurrentClassLogger();
 
+        public List<Type> GetConfigurationTypes()
+        {
+            return _configTypes;
+        }
+
         public Type GetExtensionType(string fullName)
         {
             return _classes[fullName];
         }
 
+        /// <summary>
+        ///     Enumerates files in the directory and loads types which extend AbstractExtension
+        /// </summary>
         public void LoadDirectory(string path)
         {
             foreach (var file in Directory.GetFiles(path))
@@ -40,29 +48,22 @@ namespace Akizuki.Core.Extensions
         {
             path = Path.GetFullPath(path);
             var assembly = Assembly.LoadFile(path);
-            _logger.Info($"Try loading assembly file {path}");
+            _logger.Debug($"Try loading assembly file {path}");
 
             // single assembly may have multiple extensions
-            var types = assembly.GetTypes()
-                .Where(type => type.IsSubclassOf(typeof(AbstractExtension)));
-            foreach (var clazz in types)
-                LoadExtension(clazz);
 
-            _configTypes.AddRange(assembly.GetTypes()
-                .Where(type => typeof(ExtensionConfiguration).IsAssignableFrom(type)));
+            foreach (var type in assembly.GetExportedTypes<AbstractExtension>())
+                AddExtensionType(type);
+
+            _configTypes.AddRange(assembly.GetExportedTypes<ExtensionConfiguration>());
         }
 
-        private void LoadExtension(Type type)
+        private void AddExtensionType(Type type)
         {
             Debug.Assert(type.IsSubclassOf(typeof(AbstractExtension)));
             // register with class name
             _classes.Add(type.FullName ?? throw new InvalidOperationException("Unexpected null extension name"), type);
             _logger.Info($"Registered {type.FullName}");
-        }
-
-        public List<Type> GetConfigTypes()
-        {
-            return _configTypes;
         }
     }
 }
