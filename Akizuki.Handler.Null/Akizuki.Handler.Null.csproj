@@ -30,20 +30,20 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="NLog">
-      <HintPath>..\packages\NLog.4.5.4\lib\net45\NLog.dll</HintPath>
-    </Reference>
     <Reference Include="System" />
+    <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.IO.Compression" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.ServiceModel" />
+    <Reference Include="System.Transactions" />
+    <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="NullHandler.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Akizuki.Bootloader\Akizuki.Bootloader.csproj">
-      <Project>{FBACF99D-6C16-4637-9AA5-704E7B16D414}</Project>
-      <Name>Akizuki.Bootloader</Name>
-    </ProjectReference>
     <ProjectReference Include="..\Akizuki.Core\Akizuki.Core.csproj">
       <Project>{49A7303D-451D-48A1-ADA8-606FA64D1E5B}</Project>
       <Name>Akizuki.Core</Name>
@@ -51,6 +51,17 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Properties\" />
+  </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="NLog">
+      <Version>4.5.6</Version>
+    </PackageReference>
+    <PackageReference Include="NLog.Config">
+      <Version>4.5.6</Version>
+    </PackageReference>
+    <PackageReference Include="NLog.Schema">
+      <Version>4.5.6</Version>
+    </PackageReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
