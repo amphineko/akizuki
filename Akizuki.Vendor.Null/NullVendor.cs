@@ -11,7 +11,6 @@ namespace Akizuki.Vendor.Null
     ///     A virtual vendor blackholes any statuses which are sent to null identifier
     ///     Statically registers at chat:null/null and user:null/null
     /// </summary>
-    [ExtensionConfigurationType(typeof(Configuration))]
     public sealed class NullVendor : AbstractVendor
     {
         private readonly Logger _logger = LogManager.GetCurrentClassLogger();

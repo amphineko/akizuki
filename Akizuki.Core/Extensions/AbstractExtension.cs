@@ -5,16 +5,12 @@ using System.Threading.Tasks;
 
 namespace Akizuki.Core.Extensions
 {
-    [ExtensionConfigurationType(typeof(ExtensionConfiguration))]
     public abstract class AbstractExtension : IDisposable
     {
         protected ExtensionState State;
 
         protected AbstractExtension(ExtensionConfiguration configuration)
         {
-            if (!GetType().GetCustomAttribute<ExtensionConfigurationTypeAttribute>().Type
-                .IsInstanceOfType(configuration))
-                throw new InvalidOperationException();
             State = ExtensionState.Loaded;
         }
 
@@ -35,19 +31,6 @@ namespace Akizuki.Core.Extensions
             Debug.Assert(State is ExtensionState.Loaded);
             State = ExtensionState.Enabled;
             await Task.CompletedTask;
-        }
-    }
-
-    [AttributeUsage(AttributeTargets.Class)]
-    public class ExtensionConfigurationTypeAttribute : Attribute
-    {
-        public readonly Type Type;
-
-        public ExtensionConfigurationTypeAttribute(Type type)
-        {
-            if (!typeof(ExtensionConfiguration).IsAssignableFrom(type))
-                throw new InvalidOperationException();
-            Type = type;
         }
     }
 }
