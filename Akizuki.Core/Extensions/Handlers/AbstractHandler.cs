@@ -1,14 +1,18 @@
 ﻿using System;
 using System.Threading.Tasks;
 using Akizuki.Core.Messages;
+using Akizuki.Core.Routing;
 
 namespace Akizuki.Core.Extensions.Handlers
 {
     [AsyncHandler(true)]
     public abstract class AbstractHandler : AbstractExtension
     {
-        protected AbstractHandler(ExtensionConfiguration configuration) : base(configuration)
+        protected readonly OutboundRouter _outRouter;
+
+        protected AbstractHandler(ExtensionConfiguration configuration, OutboundRouter outRouter) : base(configuration)
         {
+            _outRouter = outRouter;
         }
 
         public virtual bool Accept(AbstractStatus status)

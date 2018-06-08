@@ -24,7 +24,7 @@ namespace Akizuki.Core
                 var type = repository.GetExtensionType(configuration.FullName);
 
                 if (typeof(AbstractHandler).IsAssignableFrom(type))
-                    instances.Add(InstallHandler(type, configuration, inRouter));
+                    instances.Add(InstallHandler(type, configuration, inRouter, outRouter));
                 if (typeof(AbstractPreroutingHook).IsAssignableFrom(type))
                     instances.Add(InstallHook(type, configuration, inRouter));
                 if (typeof(AbstractVendor).IsAssignableFrom(type))
@@ -45,9 +45,9 @@ namespace Akizuki.Core
         }
 
         private static AbstractHandler InstallHandler(Type type, ExtensionConfiguration configuration,
-            InboundRouter inRouter)
+            InboundRouter inRouter, OutboundRouter outRouter)
         {
-            var handler = (AbstractHandler) Activator.CreateInstance(type, configuration);
+            var handler = (AbstractHandler) Activator.CreateInstance(type, configuration, outRouter);
             inRouter.AddStatusHandler(handler);
             return handler;
         }

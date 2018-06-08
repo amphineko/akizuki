@@ -2,6 +2,7 @@
 using Akizuki.Core.Extensions;
 using Akizuki.Core.Extensions.Handlers;
 using Akizuki.Core.Messages;
+using Akizuki.Core.Routing;
 using NLog;
 
 namespace Akizuki.Handler.Null
@@ -10,7 +11,8 @@ namespace Akizuki.Handler.Null
     {
         private readonly Logger _logger = LogManager.GetCurrentClassLogger();
 
-        public NullHandler(ExtensionConfiguration configuration) : base(configuration)
+        public NullHandler(ExtensionConfiguration configuration, OutboundRouter outRouter) : base(configuration,
+            outRouter)
         {
         }
 
