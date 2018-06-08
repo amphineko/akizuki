@@ -1,14 +1,18 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Reflection;
 using System.Threading;
 using Akizuki.Core.Extensions.Handlers;
 using Akizuki.Core.Extensions.Hooks;
 using Akizuki.Core.Messages;
+using NLog;
 
 namespace Akizuki.Core.Routing
 {
     public sealed class InboundRouter
     {
+        private static readonly Logger Logger = LogManager.GetCurrentClassLogger();
+
         private readonly List<AbstractHandler> _handlers = new List<AbstractHandler>();
 
         private readonly ReaderWriterLockSlim _lock = new ReaderWriterLockSlim();
@@ -53,10 +57,17 @@ namespace Akizuki.Core.Routing
 
                 foreach (var status in statuses)
                 foreach (var handler in _handlers)
-                    if (handler.GetType().GetCustomAttribute<AsyncHandler>().IsAsync
-                        ? await handler.AcceptAsync(status)
-                        : handler.Accept(status))
-                        break;
+                    try
+                    {
+                        if (handler.GetType().GetCustomAttribute<AsyncHandler>().IsAsync
+                            ? await handler.AcceptAsync(status)
+                            : handler.Accept(status))
+                            break;
+                    }
+                    catch (Exception e)
+                    {
+                        Logger.Warn($"Unhandled Handler exception: {e}");
+                    }
             }
             finally
             {
