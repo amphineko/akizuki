@@ -27,7 +27,7 @@ namespace Akizuki.Core.Routing
             var vendors = GetVendors(id);
             if (vendors.Count < 1)
                 throw new IndexOutOfRangeException();
-            vendors[_random.Next(vendors.Count)].Accept(status);
+            vendors[_random.Next(vendors.Count)].Accept(status).Wait();
         }
 
         /// <summary>
