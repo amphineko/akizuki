@@ -18,7 +18,7 @@ namespace Akizuki.Bootloader
         /// <summary>
         ///     Interlocked variable for discarding multiple shutdown events
         /// </summary>
-        private static int _exited = 0;
+        private static int _exited;
 
         private static void Main(string[] args)
         {
@@ -59,7 +59,9 @@ namespace Akizuki.Bootloader
             // extraTypes are used to parse Extensions' configuration classes
             var serializer = new XmlSerializer(typeof(Configuration), extraTypes.ToArray());
             using (var stream = new FileStream(path, FileMode.Open))
+            {
                 return (Configuration) serializer.Deserialize(stream);
+            }
         }
 
         private static void Shutdown(IList<AbstractExtension> instances)
@@ -70,7 +72,7 @@ namespace Akizuki.Bootloader
                 Logger.Error("Triggered multiple shutdown events");
                 return;
             }
-            
+
             Logger.Info("Akizuki bootstrap stopping");
 
             // disable active extension instances

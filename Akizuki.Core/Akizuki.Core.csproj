@@ -61,7 +61,6 @@
     <Compile Include="Routing\OutboundRouter.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Bootloader\" />
     <Folder Include="Foundation\" />
     <Folder Include="Properties\" />
   </ItemGroup>
