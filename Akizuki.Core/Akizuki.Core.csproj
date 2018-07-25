@@ -59,6 +59,7 @@
     <Compile Include="Messages\StatusType.cs" />
     <Compile Include="Routing\InboundRouter.cs" />
     <Compile Include="Routing\OutboundRouter.cs" />
+    <Compile Include="Extensions\InstanceRepository.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Foundation\" />
